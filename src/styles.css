@@ -871,6 +871,7 @@ footer ul li{
       min-width:350px
   }
     .logo{
+      width: 30%;
       text-align:center
   }
   .header-desktop{
@@ -897,6 +898,18 @@ footer ul li{
       -ms-flex-pack:justify;
       justify-content:space-between
   }
+
+  .menu-sidebar{
+    width: auto;
+    display: inline;
+  }
+
+  .navbar-sidebar .navbar-list{
+    display: flex;
+    gap: 30px;
+
+  }
+
   .menu-sidebar2{
       top:0;
       right:-300px;
