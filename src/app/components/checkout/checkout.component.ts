@@ -45,7 +45,7 @@ export class CheckoutComponent implements OnInit {
         firstName: new FormControl('',[Validators.required,
           Validators.minLength(2),
           BaoToShopValidators.notOnlyWhitespace,
-          BaoToShopValidators.minLengthWithoutSpaces(2)]),
+          BaoToShopValidators.minLengthWithoutSpaces(2)],[]),
         lastName:  new FormControl('', [Validators.required,
           Validators.minLength(2),
           BaoToShopValidators.notOnlyWhitespace,
