@@ -13,6 +13,22 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "lodash",
+              "libphonenumber-js",
+              "parse-ms",
+              "@babel/runtime-corejs3",
+              "@okta/okta-signin-widget",
+              "@okta/okta-auth-js",
+              "detect-node",
+              "tiny-emitter",
+              "p-cancelable",
+              "q",
+              "cross-fetch",
+              "clipboard",
+              "@sinonjs/text-encoding",
+              "@sindresorhus/to-milliseconds"
+            ],
             "outputPath": "dist/angular-ecommerce",
             "index": "src/index.html",
             "main": "src/main.ts",

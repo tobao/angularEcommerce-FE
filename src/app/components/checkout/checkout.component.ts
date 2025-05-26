@@ -34,70 +34,64 @@ export class CheckoutComponent implements OnInit {
               private baoToShopFormService: BaoToShopFormService,
               private cartService: CartService,
               private checkoutService: CheckoutService,
-              private router: Router
+              private router: Router,
+              private fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
     this.reviewCartDetails();
 
-    this.checkoutFormGroup = this.formBuilder.group({
-      customer: this.formBuilder.group({
-        firstName: new FormControl('',[Validators.required,
+    this.checkoutFormGroup = this.fb.group({
+      customer: this.fb.group({
+        firstName: ['',[Validators.required,
           Validators.minLength(2),
           BaoToShopValidators.notOnlyWhitespace,
-          BaoToShopValidators.minLengthWithoutSpaces(2)],[]),
-        lastName:  new FormControl('', [Validators.required,
+          BaoToShopValidators.minLengthWithoutSpaces(2)]],
+        lastName:  ['', [Validators.required,
           Validators.minLength(2),
           BaoToShopValidators.notOnlyWhitespace,
-          BaoToShopValidators.minLengthWithoutSpaces(2)]
-        ),
-        email: new FormControl('',
+          BaoToShopValidators.minLengthWithoutSpaces(2)]],
+        email: this.fb.control('',
                               [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')])
       }),
-      shippingAddress: this.formBuilder.group({
-        street: new FormControl('',
-                                [Validators.required,
-                                Validators.minLength(2),
-                                BaoToShopValidators.notOnlyWhitespace,
-                                BaoToShopValidators.minLengthWithoutSpaces(2)]),
-        city: new FormControl('',
-                                [Validators.required,
-                                Validators.minLength(2),
-                                BaoToShopValidators.notOnlyWhitespace,
-                                BaoToShopValidators.minLengthWithoutSpaces(2)]),
-        state: new FormControl('', [Validators.required]),
-        country: new FormControl('', [Validators.required]),
-        zipCode: new FormControl('',
-                                  [Validators.required,
-                                  Validators.minLength(2),
-                                  BaoToShopValidators.notOnlyWhitespace,
-                                  BaoToShopValidators.minLengthWithoutSpaces(2)])
+      shippingAddress: this.fb.group({
+        street: ['',[Validators.required,
+                    Validators.minLength(2),
+                    BaoToShopValidators.notOnlyWhitespace,
+                    BaoToShopValidators.minLengthWithoutSpaces(2)]],
+        city: ['',[Validators.required,
+                  Validators.minLength(2),
+                  BaoToShopValidators.notOnlyWhitespace,
+                  BaoToShopValidators.minLengthWithoutSpaces(2)]],
+        state: this.fb.control('', [Validators.required]),
+        country: this.fb.control('', [Validators.required]),
+        zipCode: ['',[Validators.required,
+                      Validators.minLength(2),
+                      BaoToShopValidators.notOnlyWhitespace,
+                      BaoToShopValidators.minLengthWithoutSpaces(2)]]
       }),
-      billingAddress: this.formBuilder.group({
-        street: new FormControl('',
-                                [Validators.required,
-                                Validators.minLength(2),
-                                BaoToShopValidators.notOnlyWhitespace,
-                                BaoToShopValidators.minLengthWithoutSpaces(2)]),
-        city: new FormControl('',
-                              [Validators.required,
-                              Validators.minLength(2),
-                              BaoToShopValidators.notOnlyWhitespace,
-                              BaoToShopValidators.minLengthWithoutSpaces(2)]),
-        state: new FormControl('', [Validators.required]),
-        country: new FormControl('', [Validators.required]),
-        zipCode: new FormControl('',
-                                [Validators.required,
-                                Validators.minLength(2),
-                                BaoToShopValidators.notOnlyWhitespace,
-                                BaoToShopValidators.minLengthWithoutSpaces(2)])
+      billingAddress: this.fb.group({
+        street: ['',[Validators.required,
+                    Validators.minLength(2),
+                    BaoToShopValidators.notOnlyWhitespace,
+                    BaoToShopValidators.minLengthWithoutSpaces(2)]],
+        city: ['',[Validators.required,
+                  Validators.minLength(2),
+                  BaoToShopValidators.notOnlyWhitespace,
+                  BaoToShopValidators.minLengthWithoutSpaces(2)]],
+        state: this.fb.control('', [Validators.required]),
+        country: this.fb.control('', [Validators.required]),
+        zipCode: ['',[Validators.required,
+                      Validators.minLength(2),
+                      BaoToShopValidators.notOnlyWhitespace,
+                      BaoToShopValidators.minLengthWithoutSpaces(2)]]
       }),
-      creditCard: this.formBuilder.group({
-        cardType: new FormControl('', [Validators.required]),
-        nameOnCard:  new FormControl('', [Validators.required, Validators.minLength(2),
-                                          BaoToShopValidators.notOnlyWhitespace,BaoToShopValidators.minLengthWithoutSpaces(2)]),
-        cardNumber: new FormControl('', [Validators.required, Validators.pattern('[0-9]{16}')]),
-        securityCode: new FormControl('', [Validators.required, Validators.pattern('[0-9]{3}')]),
+      creditCard: this.fb.group({
+        cardType: this.fb.control('', [Validators.required]),
+        nameOnCard:  ['', [Validators.required, Validators.minLength(2),
+                                          BaoToShopValidators.notOnlyWhitespace,BaoToShopValidators.minLengthWithoutSpaces(2)]],
+        cardNumber: ['', [Validators.required, Validators.pattern('[0-9]{16}')]],
+        securityCode: ['', [Validators.required, Validators.pattern('[0-9]{3}')]],
         expirationMonth: [''],
         expirationYear: ['']
       })
