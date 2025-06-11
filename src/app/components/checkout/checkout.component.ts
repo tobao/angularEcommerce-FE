@@ -30,6 +30,8 @@ export class CheckoutComponent implements OnInit {
   shippingAddressStates: State[] = [];
   billingAddressStates: State[] = [];
 
+  storage: Storage = sessionStorage;
+
   constructor(private formBuilder: FormBuilder,
               private baoToShopFormService: BaoToShopFormService,
               private cartService: CartService,
@@ -41,6 +43,9 @@ export class CheckoutComponent implements OnInit {
   ngOnInit(): void {
     this.reviewCartDetails();
 
+    // read the user's email address from browser storage
+    const theEmail = JSON.parse(this.storage.getItem('userEmail')!);
+
     this.checkoutFormGroup = this.fb.group({
       customer: this.fb.group({
         firstName: ['',[Validators.required,
@@ -51,7 +56,7 @@ export class CheckoutComponent implements OnInit {
           Validators.minLength(2),
           BaoToShopValidators.notOnlyWhitespace,
           BaoToShopValidators.minLengthWithoutSpaces(2)]],
-        email: this.fb.control('',
+        email: this.fb.control(theEmail,
                               [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')])
       }),
       shippingAddress: this.fb.group({

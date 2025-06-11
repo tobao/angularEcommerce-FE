@@ -12,7 +12,8 @@
     -webkit-border-radius:3px;
     -moz-border-radius:3px;
     border-radius:43px;
-    background:#205b8d
+    background:#205b8d;
+    flex-shrink: 0; /* Không cho button bị co lại */
 }
 
 /*
@@ -24,7 +25,7 @@
     display:-webkit-flex;
     display:-moz-box;
     display:-ms-flexbox;
-    display:flex
+    display:flex;
 }
 
 /*
@@ -35,12 +36,19 @@
 .login-status-user-info {
     line-height:43px;
     border:1px;
-    padding:0 17px;
+    padding:0 8px;
     -webkit-border-radius:3px;
     -moz-border-radius:3px;
     border-radius:3px;
     -webkit-transition:all .5s ease;
     -o-transition:all .5s ease;
     -moz-transition:all .5s ease;
-    transition:all .5s ease
+    transition:all .5s ease;
+
+    /* Thêm các thuộc tính để cắt text */
+    max-width: 200px; /* Giới hạn chiều rộng tối đa */
+    white-space: nowrap; /* Không cho xuống dòng */
+    overflow: hidden; /* Ẩn phần text thừa */
+    text-overflow: ellipsis; /* Hiển thị dấu ... */
+    flex-shrink: 1; /* Cho phép co lại khi cần */
 }

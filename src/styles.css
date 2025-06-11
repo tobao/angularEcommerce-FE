@@ -214,12 +214,22 @@ section{
 }
 
 .au-input-xl{
-  min-width:935px
+  min-width:500px
 }
 
 input.au-input.au-input-xl{
   border-radius:40px!important;
-  margin-right:15px
+  margin-right:15px;
+}
+
+input.au-input.au-input-l{
+  border-radius:30px!important;
+  margin-right:10px
+}
+
+input.au-input.au-input-sm{
+  border-radius:20px!important;
+  margin-right:5px
 }
 
 .au-input{
